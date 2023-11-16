@@ -14,12 +14,12 @@ char *get_user_input()
     {
         if (feof(stdin))
         {
-            // Handle end-of-file (EOF) condition, if needed
+            
             exit(EXIT_SUCCESS);
         }
         else
         {
-            // Handle other errors
+     
             (*handle_error[READLINE])();
         }
     }

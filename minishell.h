@@ -26,7 +26,7 @@ void signal_handler(int);
 char *get_user_input();
 
 /* Helpers for error handling */
-/* 0: readline_error */
+/*  0 : readline_error */
 void readline_error(void);
 
 /* Array of error handling functions */
