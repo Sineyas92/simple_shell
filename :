@@ -27,6 +27,7 @@ int main(int argc, char **argv)
         status = false;
     }
 
+    // Exit the program
     return 0;
 }
 
