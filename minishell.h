@@ -8,7 +8,8 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "typedefs.h"
+#include "typdefs.h"
+
 #include "constants.h"
 
 /* Global program name and aliases linked list */
