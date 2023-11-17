@@ -6,7 +6,7 @@
  *
  * Retourne : rien
  */
-void free2DArray(char **array)
+void free2d(char **array)
 {
     int index;
 

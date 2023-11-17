@@ -8,7 +8,7 @@
  * Return: NULL in case of error, pointer to allocated
  * space
  */
-char *_str_duplicate(char *original_str)
+char *_strdup(char *original_str)
 {
     char *copy;
     int index, length;

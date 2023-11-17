@@ -5,7 +5,7 @@
  *
  * Retourne : le tampon.
  */
-char *myGetLine(void)
+char *my_getline(void)
 {
     int numberOfChars;
     size_t bufferSize;

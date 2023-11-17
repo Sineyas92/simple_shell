@@ -6,7 +6,7 @@
  * @arguments: vecteur d'arguments.
  * Return: rien.
  */
-int myExecute(char **command, char **arguments)
+int my_exec(char **command, char **arguments)
 {
     pid_t child_pid;
     int child_status;
