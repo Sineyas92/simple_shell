@@ -8,15 +8,16 @@
  */
 void free2d(char **array)
 {
-    int index;
+    int index = 0;
 
     if (array == NULL)
         return;
 
-    for (index = 0; array[index]; index++)
+    while (array[index])
     {
         free(array[index]);
         array[index] = NULL;
+        index++;
     }
 
     free(array);
