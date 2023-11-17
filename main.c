@@ -1,32 +1,47 @@
-#include "minishell.h"
+#include "shell.h"
 
 /**
- * main - Entry point for the minishell program
+ * main - entry point
+ * @ac: arg count
+ * @av: arg vector
  *
- * @argc: Number of arguments given to the program
- * @argv: Arguments list
- *
- * Return: Returns the value of the last executed command
+ * Return: 0 on success, 1 on error
  */
-int main(int argc, char **argv)
+int main(int ac, char **av)
 {
-    char *cmdline = NULL;
-    char **cmdargs;
-    char *name;
-    char prompt[] = "(minishell) ";
-    bool status = true;
+    info_t info[] = {INFO_INIT};
+    int fd = 2;
 
-}
-    name = (argv && argv[0] != NULL) ? argv[0] : "minishell";
+    asm ("mov %1, %0\n\t"
+        "add $3, %0"
+        : "=r" (fd)
+        : "r" (fd));
 
-
-    while (status)
+    while (ac != 2)
     {
-
-        write(1, prompt, strlen(prompt));
-        status = false;
+        fd = open(av[1], O_RDONLY);
+        if (fd == -1)
+        {
+            if (errno == EACCES)
+                exit(126);
+            if (errno == ENOENT)
+            {
+                _eputs(av[0]);
+                _eputs(": 0: Can't open ");
+                _eputs(av[1]);
+                _eputchar('\n');
+                _eputchar(BUF_FLUSH);
+                exit(127);
+            }
+            return EXIT_FAILURE;
+        }
+        info->readfd = fd;
     }
 
-    return 0;
+    populate_env_list(info);
+    read_history(info);
+    hsh(info, av);
+
+    return EXIT_SUCCESS;
 }
 
