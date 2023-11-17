@@ -1,5 +1,7 @@
 #include "main.h"
-
+/**
+ * _strln.
+ */
 int _strlen(char *str)
 {
     int count, inc;
