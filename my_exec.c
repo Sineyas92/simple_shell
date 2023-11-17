@@ -14,12 +14,7 @@ int my_exec(char **command, char **arguments)
     child_pid = fork();
     if (child_pid == 0)
     {
-        if (execve(command[0], command, environ) == -1)
-        {
-            perror(arguments[0]);
-            free2d(command);
-            exit(0);
-        }
+        (execve(command[0], command, environ) == -1) ? (perror(arguments[0]), free2d(command), exit(0)) : 0;
     }
     else
     {
@@ -29,4 +24,3 @@ int my_exec(char **command, char **arguments)
 
     return WEXITSTATUS(child_status);
 }
-
