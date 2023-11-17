@@ -1,21 +1,22 @@
 #include "shell.h"
 
 /**
- * is_cmd - determines if a file is an executable command
+ * is_command_executable - determines if a file is an executable command
  * @info: the info struct
- * @path: path to the file
+ * @file_path: path to the file
  *
  * Return: 1 if true, 0 otherwise
  */
-int is_cmd(info_t *info, char *path)
+int is_command_executable(info_t *info, char *file_path)
 {
-    struct stat st;
+    struct stat file_stat;
 
     (void)info;
-    if (!path || stat(path, &st))
+
+    if (!file_path || stat(file_path, &file_stat))
         return 0;
 
-    if (st.st_mode & S_IFREG)
+    if (file_stat.st_mode & S_IFREG)
     {
         return 1;
     }
@@ -23,69 +24,73 @@ int is_cmd(info_t *info, char *path)
 }
 
 /**
- * dup_chars - duplicates characters
- * @pathstr: the PATH string
+ * duplicate_characters - duplicates characters
+ * @path_string: the PATH string
  * @start: starting index
  * @stop: stopping index
  *
- * Return: pointer to new buffer
+ * Return: pointer to a new buffer
  */
-char *dup_chars(char *pathstr, int start, int stop)
+char *duplicate_characters(char *path_string, int start, int stop)
 {
-    static char buf[1024];
-    int i = 0, k = 0;
+    static char buffer[1024];
+    int index = 0, k = 0;
 
-    while (k < 1023 && i < stop)
-    {
-        if (pathstr[i] != ':')
-            buf[k++] = pathstr[i];
-        i++;
-    }
-    buf[k] = 0;
-    return buf;
+    for (k = 0, index = start; index < stop; index++)
+        if (path_string[index] != ':')
+            buffer[k++] = path_string[index];
+
+    buffer[k] = 0;
+    return buffer;
 }
 
 /**
- * find_path - finds this cmd in the PATH string
+ * find_command_path - finds this command in the PATH string
  * @info: the info struct
- * @pathstr: the PATH string
- * @cmd: the cmd to find
+ * @path_string: the PATH string
+ * @command: the command to find
  *
- * Return: full path of cmd if found or NULL
+ * Return: full path of the command if found or NULL
  */
-char *find_path(info_t *info, char *pathstr, char *cmd)
+char *find_command_path(info_t *info, char *path_string, char *command)
 {
-    int i = 0, curr_pos = 0;
+    int index = 0, current_position = 0;
     char *path;
 
-    if (!pathstr)
+    if (!path_string)
         return NULL;
-    if ((_strlen(cmd) > 2) && starts_with(cmd, "./"))
+
+    if ((_strlen(command) > 2) && starts_with(command, "./"))
     {
-        if (is_cmd(info, cmd))
-            return cmd;
+        if (is_command_executable(info, command))
+            return command;
     }
 
     while (1)
     {
-        if (!pathstr[i] || pathstr[i] == ':')
+        if (!path_string[index] || path_string[index] == ':')
         {
-            path = dup_chars(pathstr, curr_pos, i);
+            path = duplicate_characters(path_string, current_position, index);
+
             if (!*path)
-                _strcat(path, cmd);
+                _strcat(path, command);
             else
             {
                 _strcat(path, "/");
-                _strcat(path, cmd);
+                _strcat(path, command);
             }
-            if (is_cmd(info, path))
+
+            if (is_command_executable(info, path))
                 return path;
-            if (!pathstr[i])
+
+            if (!path_string[index])
                 break;
-            curr_pos = i;
+
+            current_position = index;
         }
-        i++;
+        index++;
     }
+
     return NULL;
 }
 
