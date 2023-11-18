@@ -16,7 +16,7 @@ tokenCount = 0;
 index = 0;
 tempBuffer = NULL;
 if (!inputBuffer)
-return NULL;
+return (NULL);
 
 tempBuffer = _strdup(inputBuffer);
 currentToken = strtok(tempBuffer, " \t\n");
@@ -25,7 +25,7 @@ if (currentToken == NULL)
 {
 free(inputBuffer), inputBuffer = NULL;
 free(tempBuffer), tempBuffer = NULL;
-return NULL;
+return (NULL);
 }
 
 while (currentToken)
@@ -39,7 +39,7 @@ tokens = malloc(sizeof(char *) * (tokenCount + 1));
 if (!tokens)
 {
 free(inputBuffer), inputBuffer = NULL;
-return NULL;
+return (NULL);
 }
 currentToken = strtok(inputBuffer, " \t\n");
 
