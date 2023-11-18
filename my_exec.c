@@ -25,12 +25,11 @@ perror(arguments[0]);
 free2d(command);
 exit(EXIT_FAILURE);
 }
-}
 else
 {
 waitpid(child_pid, &child_status, 0);
 free2d(command); 
-}
+}}
     return (WEXITSTATUS(child_status));
 }
 
