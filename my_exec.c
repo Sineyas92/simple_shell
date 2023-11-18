@@ -15,7 +15,7 @@ child_pid = fork();
 if (child_pid == -1)
 {
 perror("Fork failed");
-return EXIT_FAILURE;
+return (EXIT_FAILURE);
 }
 if (child_pid == 0)
 {
@@ -30,6 +30,6 @@ else
 waitpid(child_pid, &child_status, 0);
 free2d(command); 
 }}
-    return (WEXITSTATUS(child_status));
+return (WEXITSTATUS(child_status));
 }
 
