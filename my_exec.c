@@ -2,34 +2,30 @@
 
 /**
  * my_exec - executes a program.
- * @command: vector (or array of command strings).
- * @arguments: argument vector.
- * Return: exit status of the child process.
+ * @cmd: vector (or array of comand strings).
+ * @argv: argument vector.
+ * Return: nothing.
  */
-int my_exec(char **command, char **arguments)
-{
-pid_t child_pid;
-int child_status;
-child_pid = fork();
 
-if (child_pid == -1)
+int my_exec(char **cmd, char **argv)
 {
-perror("Fork failed");
-return (EXIT_FAILURE);
-}
-if (child_pid == 0)
-{
-if (execve(command[0], command, environ) == -1)
-{
-perror(arguments[0]);
-free2d(command);
-exit(EXIT_FAILURE);
-}
-else
-{
-waitpid(child_pid, &child_status, 0);
-free2d(command); 
-}}
-return (WEXITSTATUS(child_status));
-}
+	pid_t child;
+	int status;
 
+	child = fork();
+	if (child == 0)
+	{
+		if (execve(cmd[0], cmd, environ) == -1)
+		{
+			perror(argv[0]);
+			free2d(cmd);
+			exit(0);
+		}
+	}
+	else
+	{
+		waitpid(child, &status, 0);
+		free2d(cmd);
+	}
+	return (WEXITSTATUS(status));
+}
