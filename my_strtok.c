@@ -1,56 +1,51 @@
 #include "main.h"
+
 /**
  * my_strtok - extract tokens from a buffer.
  * @inputBuffer: input buffer.
  *
- * Return: currentTokens.
+ * Return: tokens.
  */
+
 char **my_strtok(char *inputBuffer)
 {
 char *currentToken, **tokens, *tempBuffer;
-int tokenCount, index;
-
+int count, i;
 tokens = NULL;
 currentToken = NULL;
-tokenCount = 0;
-index = 0;
+count = 0;
+i = 0;
 tempBuffer = NULL;
 if (!inputBuffer)
 return (NULL);
-
 tempBuffer = _strdup(inputBuffer);
-currentToken = strtok(tempBuffer, " \t\n");
-
+currentToken = strtok(tempBuffer, " \t\n");	
 if (currentToken == NULL)
 {
 free(inputBuffer), inputBuffer = NULL;
 free(tempBuffer), tempBuffer = NULL;
 return (NULL);
 }
-
 while (currentToken)
 {
-tokenCount++;
+count++;
 currentToken = strtok(NULL, " \t\n");
 }
 free(tempBuffer), tempBuffer = NULL;
-tokens = malloc(sizeof(char *) * (tokenCount + 1));
-
+tokens = malloc(sizeof(char *) * (count + 1));
 if (!tokens)
 {
 free(inputBuffer), inputBuffer = NULL;
 return (NULL);
 }
 currentToken = strtok(inputBuffer, " \t\n");
-
 while (currentToken)
 {
-tokens[index] = _strdup(currentToken);
+tokens[i] = _strdup(currentToken);
 currentToken = strtok(NULL, " \t\n");
-index++;
+i++;
 }
 free(inputBuffer), inputBuffer = NULL;
-tokens[index] = NULL;
+tokens[i] = NULL;
 return (tokens);
 }
-
