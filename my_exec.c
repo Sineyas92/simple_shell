@@ -18,11 +18,12 @@ if (execve(command[0], command, environ) == -1)
 perror(arguments[0]);
 free2d(command);
 exit(0);
-}}
+};
+}
 else 
 {
 waitpid(child_pid, &child_status, 0);
 free2d(command);
 }
-return WEXITSTATUS(child_status);
+return( WEXITSTATUS(child_status));
 }

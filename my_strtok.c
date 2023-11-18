@@ -51,6 +51,6 @@ index++;
 }
 free(inputBuffer), inputBuffer = NULL;
 tokens[index] = NULL;
-return tokens;
+return (tokens);
 }
 
