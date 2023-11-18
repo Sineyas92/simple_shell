@@ -16,16 +16,16 @@ int index, length;
 length = 0;
 
 if (original_str == NULL)
-return NULL;
+return (NULL);
 
 for (index = 0; original_str[index]; index++)
 length++;
 copy = malloc(sizeof(char) * (length + 1));
 if (copy == NULL)
-return NULL;
+return (NULL);
 for (index = 0; original_str[index]; index++)
 {
-        copy[index] = original_str[index];
+copy[index] = original_str[index];
 }
 copy[length] = '\0';
 return (copy);

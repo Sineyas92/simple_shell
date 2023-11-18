@@ -18,7 +18,7 @@ numberOfChars = getline(&lineBuffer, &bufferSize, stdin);
 if (numberOfChars == -1)
 {
 free(lineBuffer);
-return NULL;
+return (NULL);
 }
 return (lineBuffer);
 }
