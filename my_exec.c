@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * my_exec exécute un programme.
- * @command: vecteur (ou tableau de chaînes de commandes).
- * @arguments: vecteur d'arguments.
- * Return: rien.
+ * my_exec - executes a program.
+ * @command: vector (or array of comand strings).
+ * @arguments: argument vector.
+ * Return: nothing.
  */
 int my_exec(char **command, char **arguments)
 {
