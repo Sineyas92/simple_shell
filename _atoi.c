@@ -16,7 +16,7 @@ j *= -1;
 else if (*c >= '0' && *c <= '9')
 num = num * 10 + (*c - '0');
 else if (num > 0)
- break;
+break;
 } while (*c++);
 return (num *j);
 }
