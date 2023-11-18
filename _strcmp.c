@@ -31,6 +31,6 @@ break;
 else
 index++;
 }
-return(diff);
+return (diff);
 }
 
