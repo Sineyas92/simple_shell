@@ -18,6 +18,6 @@ num = num * 10 + (*c - '0');
 else if (num > 0)
  break;
 } while (*c++);
-return (num * j);
+return (num *j);
 }
 
