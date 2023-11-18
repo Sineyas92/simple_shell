@@ -1,5 +1,10 @@
 #include "main.h"
-
+/**
+ * my_strtok - extract tokens from a buffer.
+ * @inputBuffer: input buffer.
+ *
+ * Return: currentTokens.
+ */
 char **my_strtok(char *inputBuffer)
 {
     char *currentToken, **tokens, *tempBuffer;
