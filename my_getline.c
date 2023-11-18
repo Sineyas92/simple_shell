@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * myGetLine - Lit une ligne depuis un flux de fichiers.
+ * my_getline - Lit une ligne depuis un flux de fichiers.
  *
- * Retourne : le tampon.
+ * Return: lineBuffer.
  */
 char *my_getline(void)
 {

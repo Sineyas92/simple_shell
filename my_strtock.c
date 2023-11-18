@@ -1,11 +1,12 @@
 #include "main.h"
 
 /**
- * tokenizeString - extrait des jetons d'un tampon.
- * @inputString: tampon d'entrée.
+ * my_strtok - extract tokens from a buffer.
+ * @inputString: input buffer.
  *
- * Retourne : les jetons.
+ * Return: token.
  */
+
 char **tokenizeString(char *inputString)
 {
     char *token, **tokens, *temp;
